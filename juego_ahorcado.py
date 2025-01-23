@@ -9,3 +9,24 @@ El funcionamiento esperado es el siguiente:
 3. Cada vez que el jugador ingrese una letra que NO pertenece a la palabra a adivinar se restará una vida.
 4. El juego finaliza cuando el jugador queda sin vidas, cuando adivina todas las letras de la palabra o cuando selecciona no jugar más. Para todos los casos, se debe mostrar un mensaje indicando si ganó la partida o si perdió.
 """
+
+import random
+
+# Variables globales (diccionario de palabras que se pueden llegar a elegir al azar para jugar y la cantidad de vidas iniciales)
+words = ['Programación', 'Lenguaje', 'Computadora', 'Aprendizaje', 'Módulo', 'Método', 'Desarrollo', 'Código', 'Python', 'JavaScript', 'Programador', 'Algoritmo', 'Hardware', 'Software']
+lifes = 5
+
+# Función para elegir una palabra aleatoria de la lista
+def random_word():
+    return random.choices(words)
+
+# Función para mostrar la palabra censurada con guiones
+def censored_word(word, guessed_letters):
+    return ''.join([letter if letter in guessed_letters else '_' for letter in word])
+
+# Función para transformar palabra aleatoria a capitalize, agregar letras correctas e incorrectas ingresadas en una lista y vidas iniciales
+def lets_play():
+    word = random_word().capitalize()
+    guessed_letters = []
+    incorrect_letters = []
+    life = lifes

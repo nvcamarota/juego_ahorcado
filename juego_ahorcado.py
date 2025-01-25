@@ -74,4 +74,29 @@ def lets_play():
     if life == 0:
         print(f'¡Te has quedado sin vidas, por lo que has perdido el juego! 😭\nLa palabra era "{word.capitalize()}".\n')
 
-lets_play()
+# Función para correr el juego y definir opciones posteriores al término del juego (volver a jugar, salir o mensaje de error en caso de ingresar un dato inválido)
+def starting_game():
+    lets_play()
+    
+    while True:
+        try:
+            try_again = str(input('¿Quieres volver a jugar? [S/N]: ')).upper()
+            
+            if try_again == 'S':
+                print('\nVolvamos a hacerlo entonces ✨')
+                lets_play()
+                continue
+            elif try_again not in ['S', 'N']:
+                print('¡Error! ❌\nEl dato no es válido. Por favor, ingresar "S" para confirmar ó "N" para salir del juego.\n')
+                continue
+            else:
+                print('¡Gracias por jugar! Te esperamos nuevamente en otra oportunidad. ¡Adiós! 👋\n')
+                break
+                
+        # En el caso de que el jugador interrupte el programa, imprimirá en pantalla el siguiente mensaje
+        except KeyboardInterrupt:
+            print('\nCerrando el programa...')
+            break
+        
+# Abrir el programa
+starting_game()
